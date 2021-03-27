@@ -1,13 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View,Image } from 'react-native';
+import { StyleSheet,View, FlatList,SafeAreaView} from 'react-native';
+import ListItem from './components/ListItem'
+import articles from './dummies/articles.json'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   itemContainer: {
     height: 100,
@@ -21,28 +20,36 @@ const styles = StyleSheet.create({
   },
   rightContainer: {
     flex: 1,
-    flexDirection:'column',
-  }
+    flexDirection: 'column',
+    padding: 10,
+    justifyContent:'space-between'
+  },
+  text: {
+    fontSize:16,
+  },
+  subText: {
+    fontSize: 12,
+    color:'gray',
+  },
 });
+
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.itemContainer} >
-        <View style={styles.leftContainer}>
-          <Image style={{ width: 100, height: 100 }}
-            source={{ uri: 'https:facebook.github.io/react-native/img/tiny_logo.png' }}
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={articles}
+        renderItem={({ item }) => (
+          <ListItem
+            imageUrl={item.urlToImage}
+            title={item.title}
+            author={item.author}
           />
-        </View>
-        <View style={styles.rightContainer}>
-          <Text numberOfLines={3}>
-            fadafjajfkjaljflajflkjslkjflaksjdfljasldfjkaslkjdflasdjflasjdlfjaslkdfjalsjfalsfjjffdsjfldsjflasfjjfadlsjfljaslkfjadsljflaksdjflkjadsdlfjkaslnfvaskjlkajfdlkjasldkjvalkjflasfa;l jfkjsfkjkfjlkdasjlfkadslfadsljflasjkdflasjflkajdslfkjlaksjflkajsflkjaslfkjlkdsfjd
-          </Text>
-          <Text>ReactNews</Text>
-        </View>
-      </View>
-      <StatusBar style="auto" />
-    </View>
+        )}
+        keyExtractor={(item,index) => index.toString()}
+      />
+    </SafeAreaView>
   );
 }
 
