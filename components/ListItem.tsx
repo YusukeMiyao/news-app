@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View,Image } from 'react-native';
+import { StyleSheet, Text, View,Image, TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -37,9 +37,11 @@ const ListItem = ({imageUrl,title,author,}:Props) => {
   return (
       <View style={styles.itemContainer} >
         <View style={styles.leftContainer}>
+        {!!imageUrl && (
           <Image style={{ width: 100, height: 100 }}
             source={{ uri: imageUrl }}
           />
+        )}
         </View>
         <View style={styles.rightContainer}>
           <Text numberOfLines={3} style={styles.text}>
@@ -48,7 +50,7 @@ const ListItem = ({imageUrl,title,author,}:Props) => {
         <Text style={styles.subText}>{author}</Text>
         </View>
       </View>
-    )
+  )
 }
 
 export default ListItem
