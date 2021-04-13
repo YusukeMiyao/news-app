@@ -33,6 +33,7 @@ const ClipStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name='Clip' component={ClipScreen} />
+      <Stack.Screen name="Article" component={ArticleScreen} />
     </Stack.Navigator>
   )
 }
@@ -54,7 +55,7 @@ export const AppNavigator = () => {
     <NavigationContainer>
       <Tab.Navigator screenOptions={screenOption}>
         <Tab.Screen name='Home' component={HomeStack}/>
-        <Tab.Screen name='Clip' component={ClipScreen} />
+        <Tab.Screen name='Clip' component={ClipStack} />
     </Tab.Navigator>
     </NavigationContainer>
   );
